@@ -20,7 +20,7 @@ describe "simple-select", ->
 
     it "should work", (done) ->
       s = env.$refs.simple
-      s.$el.should.have.text "1▼"
+      s.$el.should.have.text "option 1▼"
       clickNWait s.$el, ->
         #s.$el.textContent.should.equal "1▲"
         dropdown = document.querySelector(".select-dialog")
@@ -34,7 +34,7 @@ describe "simple-select", ->
         clickNWait second, ->
           should.not.exist document.querySelector(".select-dialog")
           s.value.should.equal "2"
-          s.$el.should.have.text "2▼"
+          s.$el.should.have.text "option 2▼"
           done()
 
     it "should work as a modal", (done) ->
@@ -53,7 +53,7 @@ describe "simple-select", ->
         clickNWait second, ->
           should.not.exist document.querySelector(".select-dialog")
           s.value.should.equal "2"
-          s.$el.should.have.text "2▼"
+          s.$el.should.have.text "option 2▼"
           done()
 
     it "should work with multiple", (done) ->
@@ -75,5 +75,5 @@ describe "simple-select", ->
             s.value[1].should.equal "2"
             clickNWait s.$el, ->
               should.not.exist document.querySelector(".select-dialog")
-              s.$el.should.have.text "1, 2▼"
+              s.$el.should.have.text "option 1, option 2▼"
               done()

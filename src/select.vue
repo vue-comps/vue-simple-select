@@ -7,7 +7,9 @@ div(
     :tabindex="tabindex",
     @keyup="onKeyUp",
     @keydown="onKeyDown"
-    ) {{content}}
+    )
+  template(v-if="unsafe") {{{content}}}
+  template(v-else) {{content}}
   span.caret(v-el:caret,:class="{disabled:disabled}") {{cCaret}}
   div(
     :class="dialogClass",
@@ -66,6 +68,9 @@ module.exports =
     alwaysModal:
       type: Boolean
       default: false
+    unsafe:
+      type: Boolean
+      default: false
     smallScreenSize:
       type: Number
       coerce: Number
@@ -89,8 +94,11 @@ module.exports =
       type: Function
       default: (val) ->
         if Array.isArray(val)
-          return val.join(", ")
-        return val
+          vals = []
+          for v in val
+            vals.push @resolveValue(v)
+          return vals.join(", ")
+        return @resolveValue(val)
 
   computed:
     content: ->
@@ -141,6 +149,11 @@ module.exports =
     notDismissable: false
     filterQuery: []
   methods:
+    resolveValue: (val) ->
+      option = @_slotContents.default.querySelector("[value=\"#{val}\"]")
+      if option?
+        return option.innerText if option.innerText
+      return val
     updateValue: ->
       changed = false
       if @multiple
