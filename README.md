@@ -44,7 +44,7 @@ small-screen-size | Number | 600 | below this size the dialog opens as a modal
 always-dropdown | Boolean | false | always opens as a dropdown
 always-modal | Boolean | false | always opens as a modal
 is-opened | Boolean | false | (two-way) set to open / close
-unsafe | Boolean | false | used in conjuction with `coerce` function. Allows you to use html output. (see [unsafe / coerce usage](#unsafe-coerce-usage))
+unsafe | Boolean | false | used in conjuction with `coerce` function. Allows you to use html output. (see [unsafe / coerce usage](#unsafe--coerce-usage))
 dropdown-transition | String | - | name of vue transition used for dropdown
 modal-transition | String | - | name of vue transition used for modal
 match | Function(str:String, child:OptionComponent) | Search in the `textContent` of `$el` of child | used for matching, when letters are pressed
